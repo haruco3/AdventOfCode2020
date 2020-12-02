@@ -36,6 +36,35 @@ namespace AdventOfCode2020
             Console.WriteLine("Number of valid passwords: " + validPasswordCount.ToString());
         }
 
+        static public void Part2()
+        {
+            int validPasswordCount;
+            const int linesCount = 1000;
+            PasswordData rollingData;
+
+            validPasswordCount = 0;
+
+            string[] passwords = Util.Input.ReadLines(linesCount);
+
+            for (int i = 0; i < linesCount; i++)
+            {
+                rollingData = Day2.parseLine(passwords[i]);
+
+                if (rollingData.password.Length >= (rollingData.upperBound))
+                {
+                    if (rollingData.password[rollingData.lowerBound - 1] == rollingData.constraintChar ^ rollingData.password[rollingData.upperBound - 1] == rollingData.constraintChar)
+                        validPasswordCount++;
+                }
+                else if (rollingData.password.Length >= (rollingData.lowerBound))
+                {
+                    if (rollingData.password[rollingData.lowerBound - 1] == rollingData.constraintChar)
+                        validPasswordCount++;
+                }
+            }
+
+            Console.WriteLine("Number of valid passwords: " + validPasswordCount.ToString());
+        }
+
         static PasswordData parseLine(string line)
         {
             PasswordData ret = new PasswordData();
