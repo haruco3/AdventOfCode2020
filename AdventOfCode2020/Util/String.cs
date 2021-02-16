@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode2020.Util
 {
@@ -19,6 +20,11 @@ namespace AdventOfCode2020.Util
             }
 
             return charCount;
+        }
+
+        public static bool ContainsLetters(string str)
+        {
+            return Regex.Match(str, "[a-z]").Success;
         }
     }
 }
